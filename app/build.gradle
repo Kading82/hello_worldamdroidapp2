@@ -20,7 +20,6 @@ android {
         debug {
             testCoverageEnabled true
         }
-
     }
 }
 
