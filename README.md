@@ -1,0 +1,1 @@
+[![CircleCI](https://circleci.com/gh/Kading82/hello_worldamdroidapp2.svg?style=svg)](https://circleci.com/gh/Kading82/hello_worldamdroidapp2)
