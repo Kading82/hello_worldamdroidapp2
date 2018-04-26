@@ -1,8 +1,22 @@
 <resources>
-    <string name="app_name">hello_world</string>
+    <string name="app_name">Kading, August 4/18/2018</string>
     <string name="hello_world_august_kading_4_11_2018">Hello World! August Kading 4/11/2018</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="Actualname">Enter your name</string>
+    <string name="Username">Enter your username</string>
+    <string name="Emailaddress">Enter your email</string>
+    <string name="Age">Enter your age</string>
+    <string name="Dateofbirth">Enter your date of birth</string>
+    <string name="Button">Submit</string>
+    <string name="textview">Thanks for Signing Up</string>
+    <string name="button2">Home</string>
+    <string name="alert">All Fields Required!</string>
+    <string name="textview2">Name:</string>
+    <string name="textview1">TextView</string>
+    <string name="textview4">TextView</string>
+    <string name="textview5">TextView</string>
+    <string name="todo">TODO</string>
 </resources>
