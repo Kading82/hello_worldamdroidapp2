@@ -42,7 +42,7 @@ public class MainActivityTest {
         onView(withId(R.id.editText4))
                 .perform(typeText("14"), closeSoftKeyboard());
         onView(withId(R.id.editText5)).perform(click());
-        onView(withClassName(Matchers.equalTo(DatePicker.class.getName()))).perform(PickerActions.setDate(year, month, day));
+      //  onView(withClassName(Matchers.equalTo(DatePicker.class.getName()))).perform(PickerActions.setDate(year, month, day));
 
 
         onView(withText("Submit")).perform(click());
