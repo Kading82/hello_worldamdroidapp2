@@ -58,18 +58,18 @@ public class MainActivityTest {
                 .perform(typeText("14"), closeSoftKeyboard());
 
         setDate(R.id.editText5, 1994, 1, 1);
-        
+
         onView(withText("Submit")).perform(click());
 
-        onView(withId(R.id.textView1))
+        onView(withId(R.id.textviewtab3))
                 .check(matches(withText("Email: Poophaha")));
-        onView(withId(R.id.textView2))
+        onView(withId(R.id.textviewtab2))
                 .check(matches(withText("Name: Poophaha")));
-        onView(withId(R.id.textView3))
+        onView(withId(R.id.textviewtab1))
                 .check(matches(withText("Thanks for Signing Up Poophaha!")));
-        onView(withId(R.id.textView4))
-                .check(matches(withText("Birthday: 3/26/1996")));
-        onView(withId(R.id.textView5))
+        onView(withId(R.id.textviewtab4))
+                .check(matches(withText("Birthday: 0/1/1994")));
+        onView(withId(R.id.textviewtab5))
                 .check(matches(withText("Age: 14")));
 
 
