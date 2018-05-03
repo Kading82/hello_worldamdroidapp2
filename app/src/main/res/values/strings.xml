@@ -19,4 +19,5 @@
     <string name="textview4">TextView</string>
     <string name="textview5">TextView</string>
     <string name="todo">TODO</string>
+    <string name="textviewtab1">TextView</string>
 </resources>
