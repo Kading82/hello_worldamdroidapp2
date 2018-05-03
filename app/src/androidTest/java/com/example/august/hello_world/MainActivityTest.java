@@ -43,6 +43,7 @@ public class MainActivityTest {
 
     }
 
+    //it changed damn you android studio
     @Test
     public void testtextandforms() {
         onView(withText("Submit")).perform(click());
