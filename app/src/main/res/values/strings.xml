@@ -20,4 +20,12 @@
     <string name="textview5">TextView</string>
     <string name="todo">TODO</string>
     <string name="textviewtab1">TextView</string>
+    <string name="textviewtab2">TextView</string>
+    <string name="textviewtab3">TextView</string>
+    <string name="textviewtab4">TextView</string>
+    <string name="textviewtab5">TextView</string>
+    <string name="todo2">todo2</string>
+    <string name="button3">Home</string>
+    <string name="textviewmatches1">TextViewmathces1</string>
+    <string name="textviewsettings1">TextView</string>
 </resources>

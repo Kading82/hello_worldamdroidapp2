@@ -31,7 +31,7 @@
         <android.support.v4.view.ViewPager
             android:id="@+id/viewpager"
             android:layout_width="match_parent"
-            android:layout_height="218dp"
+            android:layout_height="552dp"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     </android.support.design.widget.AppBarLayout>
@@ -58,8 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="26dp"
+            android:layout_centerHorizontal="true"
             android:onClick="button2"
             android:text="@string/button2"
             app:layout_constraintEnd_toEndOf="parent"
