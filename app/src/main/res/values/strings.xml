@@ -28,4 +28,6 @@
     <string name="button3">Home</string>
     <string name="textviewmatches1">TextViewmathces1</string>
     <string name="textviewsettings1">TextView</string>
+    <string name="todo3">TODO</string>
+    <string name="todo4">TODO</string>
 </resources>

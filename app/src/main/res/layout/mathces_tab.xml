@@ -6,22 +6,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textViewmathces1"
-        android:layout_width="287dp"
-        android:layout_height="51dp"
-        android:layout_below="@+id/imageView4"
-        android:layout_centerHorizontal="true"
-        android:text="@string/textviewmatches1"
-        tools:layout_editor_absoluteX="62dp"
-        tools:layout_editor_absoluteY="267dp" />
-
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="291dp"
-        android:layout_height="238dp"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        app:srcCompat="@drawable/mrs_t" />
+        android:contentDescription="@string/todo3"
+        android:scaleType="centerCrop"
+        tools:src="@drawable/mrs_t" />
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:alpha="0.3"
+        android:contentDescription="@string/todo4" />
+
+    <TextView
+        android:id="@+id/textViewmatches1"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/imageView4"
+        android:layout_gravity="center"
+        android:layout_marginStart="0dp"
+        android:gravity="center"
+        tools:text="" />
 </RelativeLayout>
