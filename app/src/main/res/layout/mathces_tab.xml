@@ -1,37 +1,53 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_view"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="200dp"
+    android:layout_gravity="center"
+    android:layout_marginBottom="@dimen/md_keylines"
+    android:layout_marginLeft="@dimen/md_keylines"
+    android:layout_marginRight="@dimen/md_keylines">
 
-    <ImageView
-        android:id="@+id/imageView4"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:contentDescription="@string/todo3"
-        android:scaleType="centerCrop"
-        tools:src="@drawable/mrs_t" />
+        android:layout_height="wrap_content">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:alpha="0.3"
-        android:contentDescription="@string/todo4" />
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/card_image_height"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:contentDescription="@string/todo5"
+            android:scaleType="centerCrop"
+            tools:src="@drawable/mrs_t" />
 
-    <TextView
-        android:id="@+id/textViewmatches1"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/imageView4"
-        android:layout_gravity="center"
-        android:layout_marginStart="0dp"
-        android:gravity="center"
-        tools:text="" />
-</RelativeLayout>
+        <TextView
+            android:id="@+id/textViewmatches1"
+            android:layout_width="114dp"
+            android:layout_height="@dimen/card_title_height"
+            android:layout_above="@+id/card_text"
+            android:background="@color/cardview_light_background"
+            android:layout_alignParentStart="true"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+        <Button
+            android:id="@+id/action_button"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/action2" />
+
+        <TextView
+            android:id="@+id/card_text"
+            android:layout_width="match_parent"
+            android:layout_height="41dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:background="@color/cardview_light_background"
+            android:ellipsize="end"
+            android:singleLine="true" />
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

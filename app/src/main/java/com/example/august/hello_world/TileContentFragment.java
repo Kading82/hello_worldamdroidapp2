@@ -2,6 +2,7 @@ package com.example.august.hello_world;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
@@ -12,8 +13,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class TileContentFragment extends Fragment {
 
@@ -24,7 +27,9 @@ public class TileContentFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             Bundle savedInstanceState)
+
+    {
         RecyclerView recyclerView = (RecyclerView) inflater.inflate(
                 R.layout.recycler_view, container, false);
         ContentAdapter adapter = new ContentAdapter(recyclerView.getContext());
@@ -36,16 +41,25 @@ public class TileContentFragment extends Fragment {
         recyclerView.setPadding(tilePadding, tilePadding, tilePadding, tilePadding);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
 
+
         return recyclerView;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView picture;
         public TextView name;
+        Context context;
         public ViewHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.mathces_tab, parent, false));
             picture = (ImageView) itemView.findViewById(R.id.imageView4);
             name = (TextView) itemView.findViewById(R.id.textViewmatches1);
+            Button btn = (Button) itemView.findViewById(R.id.action_button);
+            btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(itemView.getContext(), "You liked + name", Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
     /**
@@ -53,7 +67,7 @@ public class TileContentFragment extends Fragment {
      */
     public static class ContentAdapter extends RecyclerView.Adapter<ViewHolder> {
         // Set numbers of List in RecyclerView.
-        private static final int LENGTH = 3;
+        private static final int LENGTH = 6;
         private final String[] mPlaces;
         private final Drawable[] mPlacePictures;
         public ContentAdapter(Context context) {
@@ -82,5 +96,6 @@ public class TileContentFragment extends Fragment {
         public int getItemCount() {
             return LENGTH;
         }
+
     }
 }
