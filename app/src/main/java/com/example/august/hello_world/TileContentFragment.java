@@ -53,11 +53,11 @@ public class TileContentFragment extends Fragment {
             super(inflater.inflate(R.layout.mathces_tab, parent, false));
             picture = (ImageView) itemView.findViewById(R.id.imageView4);
             name = (TextView) itemView.findViewById(R.id.textViewmatches1);
-            Button btn = (Button) itemView.findViewById(R.id.action_button);
+                Button btn = (Button) itemView.findViewById(R.id.action_button);
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(itemView.getContext(), "You liked + name", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(itemView.getContext(), "You liked " + name.toString() + "!", Toast.LENGTH_SHORT).show();
                 }
             });
         }
