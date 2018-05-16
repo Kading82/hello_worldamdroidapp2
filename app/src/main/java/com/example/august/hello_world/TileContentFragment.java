@@ -18,7 +18,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class TileContentFragment extends Fragment {
+
+    private DatabaseReference databaseReference;
+    private DatabaseReference logReference;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser firebaseUser;
 
     public TileContentFragment() {
 
@@ -30,6 +40,11 @@ public class TileContentFragment extends Fragment {
                              Bundle savedInstanceState)
 
     {
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
+
+
         RecyclerView recyclerView = (RecyclerView) inflater.inflate(
                 R.layout.recycler_view, container, false);
         ContentAdapter adapter = new ContentAdapter(recyclerView.getContext());
