@@ -1,3 +1,5 @@
+package com.example.august.hello_world;
+
 public class GetData {
 
     private String imageUrl;
@@ -29,4 +31,11 @@ public class GetData {
         this.uid = uuid;
     }
 
+    public boolean isLiked() {
+        return liked;
+    }
+
+    public void setLiked(boolean liked) {
+        this.liked = liked;
+    }
 }

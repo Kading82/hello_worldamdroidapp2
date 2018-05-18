@@ -20,8 +20,16 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class TileContentFragment extends Fragment {
 
@@ -38,9 +46,9 @@ public class TileContentFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
-
     {
-        databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("matches");
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
 
@@ -81,20 +89,10 @@ public class TileContentFragment extends Fragment {
      * Adapter to display recycler view.
      */
     public static class ContentAdapter extends RecyclerView.Adapter<ViewHolder> {
+
         // Set numbers of List in RecyclerView.
         private static final int LENGTH = 6;
-        private final String[] mPlaces;
-        private final Drawable[] mPlacePictures;
-        public ContentAdapter(Context context) {
-            Resources resources = context.getResources();
-            mPlaces = resources.getStringArray(R.array.places);
-            TypedArray a = resources.obtainTypedArray(R.array.places_picture);
-            mPlacePictures = new Drawable[a.length()];
-            for (int i = 0; i < mPlacePictures.length; i++) {
-                mPlacePictures[i] = a.getDrawable(i);
-            }
-            a.recycle();
-        }
+
 
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -103,9 +101,37 @@ public class TileContentFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
+
+            DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("matches");
+
+            myRef.addValueEventListener(new ValueEventListener() {
+
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                    //you have data now traverse
+                    for (DataSnapshot child: dataSnapshot.getChildren()){
+                        //your data may come up in map so handle here
+                        HashMap<String,GetData> hashMap =  (HashMap<String,GetData>)child.getValue();
+                        //if everything is okay then just iterate over the map and create a list
+                        List<GetData> matcheslist = new ArrayList<>();
+                        for (HashMap.Entry<String,GetData> modelEntry:hashMap.entrySet()){
+                            matcheslist.add(modelEntry.getValue());
+                        }
+                        holder.picture.setImageDrawable(matcheslist[position % matcheslist.hashCode()]);
+                        holder.name.setText(matcheslist.getClass(GetData).getName());
+                    }
+                }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    //for some reason data did't show up
+                }
+            });
+
             holder.picture.setImageDrawable(mPlacePictures[position % mPlacePictures.length]);
             holder.name.setText(mPlaces[position % mPlaces.length]);
         }
+
 
         @Override
         public int getItemCount() {
