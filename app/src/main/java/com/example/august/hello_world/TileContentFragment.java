@@ -25,6 +25,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,10 +34,14 @@ import java.util.Map;
 
 public class TileContentFragment extends Fragment {
 
+
+    private Firebaseconnect connect = new Firebaseconnect();
     private DatabaseReference databaseReference;
     private DatabaseReference logReference;
-    private FirebaseAuth firebaseAuth;
+    private FirebaseAuth mAuth;
     private FirebaseUser firebaseUser;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    private ArrayList<GetData> matcheslist = new ArrayList<>();
 
     public TileContentFragment() {
 
@@ -47,11 +52,6 @@ public class TileContentFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-
-        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("matches");
-        firebaseAuth = FirebaseAuth.getInstance();
-        firebaseUser = firebaseAuth.getCurrentUser();
-
 
         RecyclerView recyclerView = (RecyclerView) inflater.inflate(
                 R.layout.recycler_view, container, false);
@@ -64,35 +64,45 @@ public class TileContentFragment extends Fragment {
         recyclerView.setPadding(tilePadding, tilePadding, tilePadding, tilePadding);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
 
-
         return recyclerView;
     }
+
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView picture;
         public TextView name;
+        public Button btn;
         Context context;
+
         public ViewHolder(LayoutInflater inflater, ViewGroup parent) {
             super(inflater.inflate(R.layout.mathces_tab, parent, false));
             picture = (ImageView) itemView.findViewById(R.id.imageView4);
             name = (TextView) itemView.findViewById(R.id.textViewmatches1);
-                Button btn = (Button) itemView.findViewById(R.id.action_button);
+            Button btn = (Button) itemView.findViewById(R.id.action_button);
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(itemView.getContext(), "You liked " + name.toString() + "!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(itemView.getContext(), "You liked " + name.getText() + "!", Toast.LENGTH_SHORT).show();
                 }
             });
         }
     }
+
+    public void populateMatches(ArrayList<GetData> matches) {
+        this.matcheslist = matches;
+    }
+
     /**
      * Adapter to display recycler view.
      */
-    public static class ContentAdapter extends RecyclerView.Adapter<ViewHolder> {
+    public class ContentAdapter extends RecyclerView.Adapter<ViewHolder> {
 
+        
         // Set numbers of List in RecyclerView.
         private static final int LENGTH = 6;
 
+        public ContentAdapter(Context context) {
+        }
 
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -101,35 +111,13 @@ public class TileContentFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
-
-            DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("matches");
-
-            myRef.addValueEventListener(new ValueEventListener() {
-
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-
-                    //you have data now traverse
-                    for (DataSnapshot child: dataSnapshot.getChildren()){
-                        //your data may come up in map so handle here
-                        HashMap<String,GetData> hashMap =  (HashMap<String,GetData>)child.getValue();
-                        //if everything is okay then just iterate over the map and create a list
-                        List<GetData> matcheslist = new ArrayList<>();
-                        for (HashMap.Entry<String,GetData> modelEntry:hashMap.entrySet()){
-                            matcheslist.add(modelEntry.getValue());
-                        }
-                        holder.picture.setImageDrawable(matcheslist[position % matcheslist.hashCode()]);
-                        holder.name.setText(matcheslist.getClass(GetData).getName());
-                    }
-                }
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-                    //for some reason data did't show up
-                }
-            });
-
-            holder.picture.setImageDrawable(mPlacePictures[position % mPlacePictures.length]);
-            holder.name.setText(mPlaces[position % mPlaces.length]);
+            int size = matcheslist.size();
+            if(size > 0) {
+                String url = matcheslist.get(position % size).getImageUrl();
+                Picasso.get().load(url).into(holder.picture);
+                holder.name.setText(matcheslist.get(position % size).getName());
+                holder.name.setTag(matcheslist.get(position % size).getUid());
+            }
         }
 
 
