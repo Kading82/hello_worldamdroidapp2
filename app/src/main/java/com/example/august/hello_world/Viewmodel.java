@@ -26,7 +26,7 @@ public class Viewmodel {
                     }
                     responseCallback.accept(matches);
                 },
-                (databaseError -> System.out.println("Error reading Matches: " + databaseError))
+                (databaseError -> System.out.println("Look what you've done "))
         );
     }
 

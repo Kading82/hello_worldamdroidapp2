@@ -27,6 +27,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import com.squareup.picasso.Picasso;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -36,11 +41,6 @@ public class TileContentFragment extends Fragment {
 
 
     private Firebaseconnect connect = new Firebaseconnect();
-    private DatabaseReference databaseReference;
-    private DatabaseReference logReference;
-    private FirebaseAuth mAuth;
-    private FirebaseUser firebaseUser;
-    private FirebaseAuth.AuthStateListener mAuthListener;
     private ArrayList<GetData> matcheslist = new ArrayList<>();
 
     public TileContentFragment() {
