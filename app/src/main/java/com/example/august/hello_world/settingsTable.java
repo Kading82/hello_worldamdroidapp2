@@ -8,19 +8,19 @@ import android.arch.persistence.room.PrimaryKey;
 public class settingsTable {
 
     @PrimaryKey(autoGenerate = true)
-    public int id;
+    private int id;
 
     @ColumnInfo(name = "dMrT")
-    public String dMrT;
+    private String dMrT;
 
     @ColumnInfo(name = "max_distance")
-    public int maxDistance;
+    private int maxDistance;
 
     @ColumnInfo(name = "gender")
-    public String gender;
+    private String gender;
 
     @ColumnInfo(name = "age_range")
-    public String ageRange;
+    private String ageRange;
 
     public int getId() {
         return id;

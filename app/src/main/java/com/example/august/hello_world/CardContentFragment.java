@@ -1,9 +1,11 @@
 package com.example.august.hello_world;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.icu.util.Calendar;
 import android.icu.util.GregorianCalendar;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.Snackbar;
@@ -17,6 +19,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.ref.WeakReference;
+
 public class CardContentFragment extends Fragment {
 
     public EditText dmrt;
@@ -29,11 +33,8 @@ public class CardContentFragment extends Fragment {
 
     }
 
-    private static settingsTable addUser(final settingsDb db, settingsTable settingsTable) {
-
-        db.userDao().insertId(settingsTable);
+    private settingsTable addUser(final settingsDb db, settingsTable settingsTable) {
         return settingsTable;
-
     }
 
 
@@ -43,7 +44,7 @@ public class CardContentFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.settings_tab, container, false);
 
-        settingsTable user = new settingsTable();
+        settingsDb db = AppDatabaseSingleton.getAppDatabase(getActivity());
 
         TextView account = view.findViewById(R.id.textViewsettings1);
         EditText drmt = view.findViewById(R.id.editText6);
@@ -51,44 +52,71 @@ public class CardContentFragment extends Fragment {
         EditText agerange = view.findViewById(R.id.editText9);
         EditText gender = view.findViewById(R.id.editText7);
 
+        settingsTable row = new settingsTable();
+        String accountpass = account.getText().toString();
+        String drmtpass = drmt.getText().toString();
+        String maxdispass = maxdis.getText().toString();
+        String agerangepass = agerange.getText().toString();
+        String genderpass = gender.getText().toString();
+
+        settingsTable user = new settingsTable();
+        row.setGender("Gender: " + genderpass);
+        row.setAgeRange("Age Range: " + agerangepass);
+        row.setdMrT("Dis: " + maxdispass);
+
       //  user.setGender("Male"); dog
       //  user.setAccountSettings("Private");
       //  user.setdMrT("25");
       //  user.setAgeRange("25-39");
 
-        drmt.setText(user.getdMrT());
-        agerange.setText(user.getAgeRange());
-        gender.setText(user.getGender());
+        //drmt.setText(user.getdMrT());
+        //agerange.setText(user.getAgeRange());
+        //gender.setText(user.getGender());
 
         Button btn = (Button) view.findViewById(R.id.button4);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        btn.setOnClickListener(v -> {
 
-                TextView account = view.findViewById(R.id.textViewsettings1);
-                EditText drmt = view.findViewById(R.id.editText6);
-                EditText maxdis = view.findViewById(R.id.editText8);
-                EditText agerange = view.findViewById(R.id.editText9);
-                EditText gender = view.findViewById(R.id.editText7);
+            TextView account1 = view.findViewById(R.id.textViewsettings1);
+            EditText drmt1 = view.findViewById(R.id.editText6);
+            EditText maxdis1 = view.findViewById(R.id.editText8);
+            EditText agerange1 = view.findViewById(R.id.editText9);
+            EditText gender1 = view.findViewById(R.id.editText7);
 
-                String accountpass = account.getText().toString();
-                String drmtpass = drmt.getText().toString();
-                String maxdispass = maxdis.getText().toString();
-                String agerangepass = agerange.getText().toString();
-                String genderpass = gender.getText().toString();
+            row.setGender("Gender: " + genderpass);
+            row.setAgeRange("Age Range: " + agerangepass);
+            row.setdMrT("Dis: " + maxdispass);
 
-                settingsTable user = new settingsTable();
-                user.setGender("Gender: " + genderpass);
-                user.setAgeRange("Age Range: " + agerangepass);
-                user.setdMrT("Dis: " + maxdispass);
+            new UpdateUserTask(getActivity(), user).execute();
 
-                Toast.makeText(v.getContext(), "Your settings have been saved.", Toast.LENGTH_SHORT).show();
-            }
-
+            Toast.makeText(v.getContext(), "Your settings have been saved.", Toast.LENGTH_SHORT).show();
         });
 
         return view;
     }
 
+    // Have to do this in an Async Task (in doInBackground
+    private static class UpdateUserTask extends AsyncTask<Void, Void, settingsTable> {
+
+        private WeakReference<Activity> weakActivity;
+        private settingsTable user;
+
+        public UpdateUserTask(Activity activity, settingsTable user) {
+            weakActivity = new WeakReference<>(activity);
+            this.user = user;
+        }
+
+        @Override
+        protected settingsTable doInBackground(Void... voids) {
+            Activity activity = weakActivity.get();
+            if (activity == null) {
+                return null;
+            }
+
+            settingsDb db = AppDatabaseSingleton.getAppDatabase(activity.getApplicationContext());
+
+            db.settingsDao().insertId(user);
+            return user;
+        }
+    }
 
 }
