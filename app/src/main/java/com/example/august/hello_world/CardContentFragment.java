@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.lang.ref.WeakReference;
+import java.util.List;
 
 public class CardContentFragment extends Fragment {
 
@@ -113,10 +114,22 @@ public class CardContentFragment extends Fragment {
             }
 
             settingsDb db = AppDatabaseSingleton.getAppDatabase(activity.getApplicationContext());
+            return user;
 
             db.settingsDao().insertId(user);
-            return user;
+            String[] id = { user };
+
+            List<settingsTable> users = db.settingsDao().loadAllByIds(ids);
+
+            if(users.size() <= 0 || users.get(0) == null) {
+                return null;
+            }
+            return users.get(0);
         }
+
+        }
+
+
     }
 
 }
