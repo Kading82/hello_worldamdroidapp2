@@ -14,8 +14,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -65,14 +67,24 @@ public class CardContentFragment extends Fragment {
         row.setAgeRange("Age Range: " + agerangepass);
         row.setdMrT("Dis: " + maxdispass);
 
-      //  user.setGender("Male"); dog
-      //  user.setAccountSettings("Private");
-      //  user.setdMrT("25");
-      //  user.setAgeRange("25-39");
+        //  user.setGender("Male"); dog
+        //  user.setAccountSettings("Private");
+        //  user.setdMrT("25");
+        //  user.setAgeRange("25-39");
 
         //drmt.setText(user.getdMrT());
         //agerange.setText(user.getAgeRange());
         //gender.setText(user.getGender());
+        Switch accountoggle = (Switch) view.findViewById(R.id.switch1);
+
+        accountoggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                if (isChecked){
+                    account.setText("Public");}
+                    else account.setText("Private");
+            }
+        });
 
         Button btn = (Button) view.findViewById(R.id.button4);
         btn.setOnClickListener(v -> {
@@ -94,6 +106,9 @@ public class CardContentFragment extends Fragment {
 
         return view;
     }
+
+
+
 
     // Have to do this in an Async Task (in doInBackground
     private static class UpdateUserTask extends AsyncTask<Void, Void, settingsTable> {

@@ -15,7 +15,7 @@
     <string name="button2">Home</string>
     <string name="alert">All Fields Required!</string>
     <string name="textview2">Name:</string>
-    <string name="textview1">TextView</string>
+    <string name="textview1">Private</string>
     <string name="textview4">TextView</string>
     <string name="textview5">TextView</string>
     <string name="todo">TODO</string>
@@ -27,7 +27,7 @@
     <string name="todo2">todo2</string>
     <string name="button3">Home</string>
     <string name="textviewmatches1">TextViewmathces1</string>
-    <string name="textviewsettings1">TextView</string>
+    <string name="textviewsettings1">Private</string>
     <string name="todo3">TODO</string>
     <string name="todo4">TODO</string>
     <string name="action2">Like</string>
@@ -37,4 +37,5 @@
     <string name="toggle">Switch</string>
     <string name="interested_age_range">Interested age range</string>
     <string name="button6">Submit</string>
+    <string name="gender">Gender</string>
 </resources>

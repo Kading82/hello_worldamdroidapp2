@@ -18,6 +18,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="90dp"
             android:text="@string/textviewsettings1"
+            android:hint="@string/textview1"
             tools:layout_editor_absoluteX="176dp"
             tools:layout_editor_absoluteY="177dp" />
 
@@ -78,9 +79,9 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/editText6"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="-200dp"
+            android:layout_marginBottom="-180dp"
             android:ems="10"
-            android:hint="Gender"
+            android:hint="@string/gender"
             android:inputType="textPersonName"
             android:text="Gender" />
 
