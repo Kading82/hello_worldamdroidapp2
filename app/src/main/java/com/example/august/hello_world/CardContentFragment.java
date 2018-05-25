@@ -51,7 +51,7 @@ public class CardContentFragment extends Fragment {
         EditText agerange = view.findViewById(R.id.editText9);
         EditText gender = view.findViewById(R.id.editText7);
 
-      //  user.setGender("Male");
+      //  user.setGender("Male"); dog
       //  user.setAccountSettings("Private");
       //  user.setdMrT("25");
       //  user.setAgeRange("25-39");
