@@ -8,16 +8,16 @@ import static org.junit.Assert.*;
 
 public class Main2ActivityTest {
 
-    private Resources resources
+/*    private Resources resources
 
     public boolean matchesSafely(View view) {
         this.resources = view.getResources();
 
         if (childView == null) {
             RecyclerView recyclerView =
-                    (RecyclerView) view.getRootView().findViewById(recyclerViewId);
+                   (RecyclerView) view.getRootView().findViewById(recyclerViewId);
             if (recyclerView != null && recyclerView.getId() == recyclerViewId) {
-                RecyclerView.ViewHolder viewHolder =
+              RecyclerView.ViewHolder viewHolder =
                         recyclerView.findViewHolderForAdapterPosition(position);
                 if (viewHolder != null) {
                     childView = viewHolder.itemView;
@@ -35,5 +35,5 @@ public class Main2ActivityTest {
             return view == targetView;
         }
     }
-
+*/
 }
