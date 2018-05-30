@@ -116,15 +116,15 @@ public class CardContentFragment extends Fragment {
             settingsDb db = AppDatabaseSingleton.getAppDatabase(activity.getApplicationContext());
             return user;
 
-            db.settingsDao().insertId(user);
-            String[] id = { user };
+         //   db.settingsDao().insertId(user);
+         //   String[] id = { user };
 
-            List<settingsTable> users = db.settingsDao().loadAllByIds(ids);
+          //  List<settingsTable> users = db.settingsDao().loadAllByIds(ids);
 
-            if(users.size() <= 0 || users.get(0) == null) {
-                return null;
-            }
-            return users.get(0);
+        //    if(users.size() <= 0 || users.get(0) == null) {
+         //       return null;
+        //    }
+       //     return users.get(0);
         }
 
         }
