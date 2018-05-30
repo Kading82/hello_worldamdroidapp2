@@ -115,28 +115,21 @@ public class CardContentFragment extends Fragment {
 
             settingsDb db = AppDatabaseSingleton.getAppDatabase(activity.getApplicationContext());
             return user;
+
+            db.settingsDao().insertId(user);
+            String[] id = { user };
+
+            List<settingsTable> users = db.settingsDao().loadAllByIds(ids);
+
+            if(users.size() <= 0 || users.get(0) == null) {
+                return null;
+            }
+            return users.get(0);
         }
-
-       //     @Override
-       //     protected void onPostExecute(settingsTable user) {
-        //        CardContentFragment activity = (CardContentFragment) weakActivity.get();
-       //         if(user == null || activity == null) {
-       //             return;
-                }
-
-        //    db.settingsDao().insertId(user);
-         //   String[] id = {  };
-//
-        //    List<settingsTable> users = db.settingsDao().insertId(id);
-
-         //   if(users.size() <= 0 || users.get(0) == null) {
-         //       return null;
-        //    }
-         //   return users.get(0);
-     //   }
 
         }
 
 
-  //  }
+    }
 
+}
