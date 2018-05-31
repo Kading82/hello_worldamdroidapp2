@@ -63,11 +63,13 @@ public class TileContentFragment extends Fragment {
         Firebaseconnect connect = new Firebaseconnect();
         ArrayList<GetData> matcheslist = new ArrayList<>();
 
+
         RecyclerView recyclerView = (RecyclerView) inflater.inflate(
                 R.layout.recycler_view, container, false);
         ContentAdapter adapter = new ContentAdapter(recyclerView.getContext());
         recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize(true);
+
 
         // Set padding for Tiles (not needed for Cards/Lists!)
         int tilePadding = getResources().getDimensionPixelSize(R.dimen.tile_padding);
@@ -101,25 +103,6 @@ public class TileContentFragment extends Fragment {
     }
 
 
-    public void toggleNetworkUpdates(View view) {
-        if(!checkLocation()) {
-            return;
-        }
-        Button button = (Button) view;
-        if(button.getText().equals(getResources().getString(R.string.pause))) {
-            locationManager.removeUpdates(locationListenerNetwork);
-            button.setText(R.string.resume);
-        }
-        else {
-            if (ActivityCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED ||
-                    ActivityCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-
-                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 30000, 10, locationListenerNetwork);
-                Toast.makeText(getActivity(), R.string.network_provider_started_running, Toast.LENGTH_LONG).show();
-                button.setText(R.string.pause);
-            }
-        }
-    }
 
     private final LocationListener locationListenerNetwork = new LocationListener() {
         public void onLocationChanged(Location location) {
@@ -150,11 +133,12 @@ public class TileContentFragment extends Fragment {
     };
 
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         public ImageView picture;
         public TextView name;
         public Button btn;
+        public Button btn2;
         Context context;
 
         public ViewHolder(LayoutInflater inflater, ViewGroup parent) {
@@ -162,12 +146,21 @@ public class TileContentFragment extends Fragment {
             picture = (ImageView) itemView.findViewById(R.id.imageView4);
             name = (TextView) itemView.findViewById(R.id.textViewmatches1);
             Button btn = (Button) itemView.findViewById(R.id.action_button);
+
+            if (
+                    ActivityCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED ||
+                            ActivityCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+
+                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 30000, 10, locationListenerNetwork);
+            Toast.makeText(getActivity(), R.string.network_provider_started_running, Toast.LENGTH_LONG).show();
+
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(itemView.getContext(), "You liked " + name.getText() + "!", Toast.LENGTH_SHORT).show();
                 }
             });
+
         }
     }
 
@@ -201,6 +194,7 @@ public class TileContentFragment extends Fragment {
              //   holder.name.setText(matcheslist.get(position % size).getName());
             //  holder.name.setTag(matcheslist.get(position % size).getUid());
           //  }
+          //  textviewlocation.setText(String.format("%s", longitudeNetwork));
         }
 
 

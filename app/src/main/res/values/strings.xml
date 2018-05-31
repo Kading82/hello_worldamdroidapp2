@@ -48,4 +48,5 @@
     <string name="resume">Resume</string>
     <string name="network_provider_started_running">Network provider started running</string>
     <string name="network_provider_update">Network Provider update</string>
+    <string name="buttonlocation">Get Loc.</string>
 </resources>
