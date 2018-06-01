@@ -24,7 +24,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import com.example.august.hello_world.GetData;
+import com.example.august.hello_world.Viewmodel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -46,6 +47,7 @@ import java.util.Map;
 
 public class TileContentFragment extends Fragment {
 
+//    private static Viewmodel viewmodel = new viewmodel();
     LocationManager locationManager;
     double longitudeNetwork, latitudeNetwork;
     TextView textviewlocation;
@@ -64,8 +66,7 @@ public class TileContentFragment extends Fragment {
         ArrayList<GetData> matcheslist = new ArrayList<>();
 
 
-        RecyclerView recyclerView = (RecyclerView) inflater.inflate(
-                R.layout.recycler_view, container, false);
+        RecyclerView recyclerView = (RecyclerView) inflater.inflate(R.layout.recycler_view, container, false);
         ContentAdapter adapter = new ContentAdapter(recyclerView.getContext());
         recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize(true);
@@ -111,7 +112,7 @@ public class TileContentFragment extends Fragment {
 
             getActivity().runOnUiThread(() -> {
                 textviewlocation.setText(String.format("%s", longitudeNetwork));
-             //   latitudeValueNetwork.setText(String.format("%s", latitudeNetwork));
+                //   latitudeValueNetwork.setText(String.format("%s", latitudeNetwork));
                 Toast.makeText(getActivity(), R.string.network_provider_update, Toast.LENGTH_SHORT).show();
             });
         }
@@ -164,9 +165,9 @@ public class TileContentFragment extends Fragment {
         }
     }
 
-    public void populateMatches(ArrayList<GetData> matches) {
-    //    this.matcheslist = matches;
-    }
+  //  public void populateMatches(ArrayList<GetData> matches) {
+    //       this.matcheslist = matches;
+   // }
 
     /**
      * Adapter to display recycler view.
@@ -187,21 +188,22 @@ public class TileContentFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
-          //  int size = matcheslist.size();
-         //   if(size > 0) {
-           //     String url = matcheslist.get(position % size).getImageUrl();
-            //    Picasso.get().load(url).into(holder.picture);
-             //   holder.name.setText(matcheslist.get(position % size).getName());
-            //  holder.name.setTag(matcheslist.get(position % size).getUid());
-          //  }
-          //  textviewlocation.setText(String.format("%s", longitudeNetwork));
-        }
-
+       //      int size = matcheslist.size();
+         //    if(size > 0) {
+           //      String url = matcheslist.get(position % size).getImageUrl();
+             //    Picasso.get().load(url).into(holder.picture);
+               //  holder.name.setText(matcheslist.get(position % size).getName());
+                //  holder.name.setTag(matcheslist.get(position % size).getUid());
+                }
+           //  textviewlocation.setText(String.format("%s", longitudeNetwork));
 
         @Override
         public int getItemCount() {
             return LENGTH;
         }
+        }
+
+
+
 
     }
-}

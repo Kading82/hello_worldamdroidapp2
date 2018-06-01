@@ -11,6 +11,10 @@ public class Viewmodel {
     private Firebaseconnect dataconnect;
     private ArrayList<GetData> matches;
 
+
+    public void addlist(GetData item){
+    }
+
     public ArrayList<GetData> getMatches() {
         return matches;
     }

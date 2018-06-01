@@ -29,9 +29,9 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 
 @RunWith(AndroidJUnit4.class)
 public class MainActivityTest {
+
     @Rule
-    public ActivityTestRule<MainActivity> mActivityRule
-            = new ActivityTestRule<>(MainActivity.class);
+    public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule<>(MainActivity.class);
 
     public static void setDate(int datePickerLaunchViewId, int year, int monthOfYear, int dayOfMonth) {
 
@@ -72,6 +72,20 @@ public class MainActivityTest {
                 .check(matches(withText("Birthday: 0/1/1994")));
         onView(withId(R.id.textviewtab5))
                 .check(matches(withText("Age: 14")));
+
+        onView(withText("Matches")).perform(click());
+
+        onView(withText("Settings")).perform(click());
+        onView(withId(R.id.textViewsettings1))
+                .check(matches(withText("TextView")));
+        onView(withId(R.id.editText6))
+                .perform(typeText("Poophaha"), closeSoftKeyboard());
+        onView(withId(R.id.editText7))
+                .perform(typeText("Poophaha"), closeSoftKeyboard());
+        onView(withId(R.id.editText8))
+                .perform(typeText("Poophaha"), closeSoftKeyboard());
+        onView(withId(R.id.editText9))
+                .perform(typeText("14"), closeSoftKeyboard());
 
 
     }
